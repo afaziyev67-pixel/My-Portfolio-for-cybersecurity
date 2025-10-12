@@ -1,0 +1,51 @@
+1️ r (read – oxuma)
+Fayl üçün: Faylın məzmununu oxuya bilmək.
+
+cat file.txt
+Qovluq üçün: Qovluğun içindəkilərin siyahısını görə bilmək (ls ilə).
+
+Amma x icazəsi yoxdursa, görsən belə, daxil olub faylı aça bilməzsən.
+
+2️ w (write – yazma)
+Fayl üçün: Faylın məzmununu dəyişdirmək, üzərinə yazmaq.
+
+echo "text" >> file.txt
+Qovluq üçün: Qovluğun içində fayl və qovluq yaratmaq və ya silmək.
+
+Amma x icazəsi yoxdursa, yaratmaq/silmək edə bilməzsən.
+
+3️ x (execute – icra)
+Fayl üçün: Faylı proqram kimi işə salmaq.
+
+./script.sh
+Qovluq üçün: Qovluğa daxil ola bilmək (cd ilə) və içindəki fayllara giriş.
+
+x olmadan, ls belə işləməz.
+
+4️ d (directory – qovluq tipi)
+ls -l çıxışının ən başındakı simvol icazə deyil, obyekt növünü göstərir:
+
+d → directory (qovluq)
+
+- → regular file (adi fayl)
+
+l → symbolic link (simvolik keçid)
+
+b, c, p, s → digər xüsusi fayl tipləri
+
+ Məsələn:
+
+
+ls -ld data
+çıxışı:
+
+drwxr-x---
+d → bu obyekt qovluqdur
+
+rwx → sahibin icazələri
+
+r-x → qrupun icazələri
+
+--- → digərlərinin icazəsi yoxdur
+
+r = 4, w = 2, x = 1
