@@ -1,0 +1,18 @@
+      Symmetric Encryption
+AES:
+echo 'Simmetrik sifreleme' > ssl.txt
+openssl enc -aes-256-cbc -pbkdf2 -salt -in ssl.txt -out ssl.txt.enc
+openssl enc -d -aes-256-cbc -pbkdf2 -salt -in ssl.txt.enc  -out ssl.txt.d
+cat ssl.txt.d
+
+
+Alqoritm	Təsviri	OpenSSL-də istifadə nümunəsi
+AES-128-CBC	128-bit açar, CBC rejimi	-aes-128-cbc
+AES-192-CBC	192-bit açar, CBC rejimi	-aes-192-cbc
+AES-256-CBC	256-bit açar, CBC rejimi	-aes-256-cbc
+AES-128-CTR	128-bit açar, CTR rejimi (stream cipher kimi işləyir)	-aes-128-ctr
+AES-256-CTR	256-bit açar, CTR rejimi	-aes-256-ctr
+DES-CBC	Köhnə standart, 56-bit açar, CBC rejimi	-des-cbc
+DES-EDE3-CBC (3DES)	Triple DES, daha güclü DES	-des-ede3-cbc
+RC4	Stream cipher, artıq tövsiyə edilmir	-rc4
+
