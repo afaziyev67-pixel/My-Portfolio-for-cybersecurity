@@ -1,0 +1,95 @@
+tar sözü Tape Archive sözlərindən gəlir — əvvəlcə köhnə “tape drive” lent yaddaşlarında faylları arxivləmək üçün yaradılıb, amma indi Linux/Unix sistemlərində ən çox faylları və qovluqları bir yerdə toplamaq və sıxışdırmaq üçün istifadə olunur.
+
+---
+
+ tar nə üçündür?
+
+1. Çox faylı bir paketə toplamaq
+
+    Məsələn, bir qovluqdakı yüzlərlə faylı tək bir .tar faylına çevirmək.
+2. Fayl strukturu və icazələri qorumaq
+
+    tar arxivində fayl icazələri, tarixlər və qovluq quruluşu eynilə qalır.
+3. Backup (ehtiyat nüsxə) yaratmaq
+
+    Sistem qovluqlarını .tar.gz kimi saxlayıb sonradan bərpa etmək.
+4. Sıxışdırmaq
+
+    Gzip (.tar.gz), bzip2 (.tar.bz2), xz (.tar.xz) formatları ilə daha kiçik ölçülü etmək.
+5. Paylamaq
+
+    Linux proqram paketləri çox vaxt .tar.gz və ya .tar.xz formatında yayımlanır.
+
+---
+
+ Vacib məqam
+
+ .tar → sadəcə arxiv (sıxışdırılmamış)
+ .tar.gz → gzip ilə sıxışdırılmış tar
+ .tar.bz2 → bzip2 ilə sıxışdırılmış tar
+ 
+  .tar — sadə arxiv
+Məqsəd: Bir neçə faylı və qovluğu tək fayl içində toplamaq.
+
+Sıxışdırma yoxdur → fayl ölçüsü dəyişmir.
+
+İcazələr, tarixlər, qovluq strukturu qorunur.
+
+Əmr nümunəsi:
+
+
+tar -cvf backup.tar /data
+
+c → create (yarat)
+
+v → verbose (göstər)
+
+f → fayl adı
+
+2️ .gz — gzip sıxışdırması
+Məqsəd: Tək bir faylı gzip alqoritmi ilə sıxışdırmaq.
+
+.gz tək fayl üçündür, qovluqları sıxışdırmaq üçün əvvəlcə .tar etmək lazımdır.
+
+Əmr nümunəsi:
+
+gzip file.txt
+→ file.txt.gz yaradar və orijinal file.txt silinir.
+Açmaq üçün:
+
+gunzip file.txt.gz
+3️ .tar.gz — arxiv + gzip
+Məqsəd: Bir neçə faylı .tar ilə toplamaq və sonra gzip ilə sıxışdırmaq.
+
+Ən çox istifadə olunan backup formatıdır.
+
+Əmr nümunəsi:
+
+tar -czvf backup.tar.gz /data
+z → gzip sıxışdırması
+
+4️ .tar.bz2 — arxiv + bzip2
+Məqsəd: .tar.gz ilə eyni, amma bzip2 alqoritmi ilə daha güclü sıxışdırma.
+
+Sıxışdırma daha yaxşıdır, amma daha yavaşdır.
+
+Əmr nümunəsi:
+
+tar -cjvf backup.tar.bz2 /data
+j → bzip2 sıxışdırması
+
+Izah:
+
+tar → arxivləmə proqramı
+
+-c → create (yeni arxiv yarat)
+
+-z → gzip formatında sıxışdır
+
+-v → verbose (prosesdə fayl adlarını göstər) – istəmirsənsə buraxmaq olar
+
+-f → fayl adını təyin et
+
+data.tar.gz → çıxış arxivinin adı
+
+data → arxivlənəcək qovluq
