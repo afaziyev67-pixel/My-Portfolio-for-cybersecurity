@@ -1,0 +1,20 @@
+Komut	Təyinatı	Nümunə
+nmap <IP>	Sadə port taraması	nmap 192.168.1.1
+nmap <host1> <host2>	Birdən çox host yoxlamaq	nmap 192.168.1.1 192.168.1.2
+nmap <IP range>	IP aralığını skan etmək	nmap 192.168.1.1-50
+nmap <subnet>	Bütün şəbəkəni yoxlamaq (CIDR)	nmap 192.168.1.0/24
+nmap -sn && -sP <subnet>	Ping Sweep (Hansı cihazlar aktivdir)	nmap -sP 192.168.1.0/24
+nmap -Pn	Ping atlamadan yoxlama (Firewall varsa faydalı)	nmap -Pn 192.168.1.1
+nmap -p <port>	Müəyyən portu yoxlamaq	nmap -p 80 192.168.1.1
+nmap -p-	Bütün portları yoxlamaq (1-65535)	nmap -p- 192.168.1.1
+nmap -sS	TCP SYN Scan (stealth scan)	nmap -sS 192.168.1.1
+nmap -sT	TCP Connect Scan (klassik)	nmap -sT 192.168.1.1
+nmap -sU	UDP port taraması	nmap -sU 192.168.1.1
+nmap -A	Ətraflı məlumat (OS, xidmətlər, traceroute, scriptlər)	nmap -A 192.168.1.1
+nmap -O	Əməliyyat sistemi təyini	nmap -O 192.168.1.1
+nmap -sV	Servis və versiya aşkarı	nmap -sV 192.168.1.1
+nmap -T<0-5>	Sürət təyini (T0 - T5 arası)	nmap -T4 192.168.1.1
+nmap -v	Ətraflı çıxış (verbose)	nmap -v 192.168.1.1
+nmap --script=<script>	NSE Script ilə xüsusi skan	nmap --script=vuln 192.168.1.1
+nmap -oN <file>	Normal çıxışı fayla yazmaq	nmap -oN scan.txt 192.168.1.1
+nmap -oX <file>	XML formatında çıxış	nmap -oX scan.xml 192.168.1.1
