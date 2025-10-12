@@ -1,0 +1,77 @@
+sudo apt update
+sudo apt install ufw
+
+sudo ufw default deny incoming      # Bütün gələn bağlantıları blokla
+sudo ufw default allow outgoing     # Çıxan bağlantılara icazə ver
+sudo ufw allow ssh                  # SSH bağlantısına icazə ver (əgər uzaqdan giriş edirsənsə)
+
+sudo ufw enable                     # Təhlükəsizlik divarını aktiv et
+sudo ufw status verbose             # Vəziyyəti ətraflı göstər
+sudo iptables -L -v                 # Paket və bayt qaydalarını göstər
+
+
+Bu nə edir?
+
+Server və ya sistemə “brute force” hücumlarının qarşısını alır.
+
+Giriş loglarını, məsələn sshd-i izləyir.
+
+Müəyyən IP-dən, məsələn 5 dəfə səhv parol daxil edilərsə, onu müəyyən müddətə bloklayır (10 dəqiqə, 1 saat və ya daimi).
+
+ip -4 addr show          # Lokal IP ünvanını göstər
+hostname -I              # Lokal IP ünvanını göstər
+ip a                     # Lokal IP ünvanını göstər
+curl ifconfig.me         # Xarici IP ünvanını göstər
+curl icanhazip.com       # Xarici IP ünvanını göstər
+
+sudo apt install fail2ban
+sudo systemctl enable --now fail2ban
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local   # Konfiqurasiyanı kopyala
+sudo nano /etc/fail2ban/jail.local                         # Ayarları redaktə et
+sudo systemctl restart fail2ban
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+
+
+rkhunter (Rootkit Hunter)
+
+Bu nə edir?
+
+Tanınmış rootkit nümunələrini, arxa qapıları və zərərli proqram izlərini yoxlayır.
+
+Kritik sistem fayllarında gözlənilməz dəyişiklikləri izləyir.
+
+Rootkit davranışlarını və məlum ikili fayl dəyişikliklərini yoxlayır (məsələn, ls, ps kimi alətlərin dəyişdirilib-dəyişdirilmədiyini).
+
+sudo apt-get install rkhunter
+sudo dpkg --remove --force-remove-reinstreq rkhunter
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --reinstall rkhunter
+
+sudo chkrootkit                   # Sürətli rootkit taraması
+sudo rkhunter --update            # Verilənlər bazasını yenilə
+sudo rkhunter --propupd           # Sistem fayllarının cari vəziyyətinə istinad et
+sudo rkhunter --check             # Rootkit taramasına başla
+
+
+
+Suricata (Şəbəkə izləmə / IDS)
+sudo apt install suricata
+sudo suricata-update
+
+sudo suricata -T                     # Konfiqurasiyanı test et
+sudo systemctl enable --now suricata
+sudo suricata -i wlan0
+sudo tail -f /var/log/suricata/fast.log # Real zamanlı logları izləyir
+Suricata logları:
+
+fast.log → sürətli xəbərdarlıqlar
+eve.json → ətraflı JSON loglar
+stats.log → performans statistikaları
+
+
+sudo iptables -L -v                     # Iptables qaydalarını göstər
+sudo ufw status verbose                  # UFW vəziyyətini göstər
+sudo fail2ban-client status sshd         # Fail2ban SSH vəziyyətini göstər
+sudo rkhunter --check                    # Rootkit yoxlaması
+sudo tail -f /var/log/suricata/fast.log # Suricata loglarını izləyir
+
