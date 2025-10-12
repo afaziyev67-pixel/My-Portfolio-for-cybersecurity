@@ -1,0 +1,11 @@
+ifconfig && ip a
+nmap sn && Pn
+nmap -sS -sv -O -A -Pn 
+TCP(Transmission control protocol)
+
+Flag	Anlamı
+SYN	Bağlantı başlatılır
+ACK	Karşı taraf cevap verdi
+FIN	Bağlantı kapanıyor
+RST	Bağlantı reddedildi/reset
+PSH	Veriyi hemen gönder
