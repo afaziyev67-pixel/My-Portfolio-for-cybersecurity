@@ -1,0 +1,108 @@
+import socket
+
+host = input("IP və ya host adı daxil edin (məs: 192.168.1.1 və ya google.com): ")
+port = int(input("Port nömrəsini daxil edin (məs: 80): "))
+
+def check_port(host, port):
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)  # 1 saniyə vaxt limiti
+        result = sock.connect_ex((host, port))
+        if result == 0:
+            print(f"[+] Port {port} AÇIQDIR ({host})")
+        else:
+            print(f"[-] Port {port} BAĞLIDIR və ya çatmaq mümkün olmadı ({host})")
+    except socket.gaierror:
+        print("Host adı düzgün deyil və ya DNS problemi var.")
+    except Exception as e:
+        print(f"Xəta baş verdi: {e}")
+    finally:
+        sock.close()
+
+check_port(host, port)
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = 'google.com'
+port = 443
+s.settimeout(5)
+try:
+    s.connect((host,port))
+    print("Port aciqdir")
+except:
+    print('Port aciq deyil')
+finally:
+    s.close()
+
+
+import socket
+
+s = socket.socket()
+s.settimeout(2)
+result = s.connect_ex(("google.com", 80))
+
+if result == 0:
+    print("Port açıqdır")
+else:
+    print("Port bağlıdır və ya cavab yoxdur")
+
+s.close()
+
+import socket
+host_ip = input("ip ve ya host daxil edin: ")
+port  = int(input("port nomresini daxil edin: "))
+
+def check_port(host_ip,port):
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(5)
+        result = sock.connect_ex((host_ip,port))
+        if result == 0:
+            print("Port aciqdir")
+        else:
+            print("Port baglidir")
+    except socket.gaierror:
+        print("Host adi duzgun deyil ve ya DNS problemi var")
+    except socket.timeout:
+        print("Vaxt limiti asdi")
+    except ConnectionRefusedError:
+        print("Baglanti qurula bilmedi")
+    finally:
+        sock.close()
+check_port(host_ip,port)
+
+
+import socket
+host_ip = input("ip ve ya host daxil edin: ")
+port  = int(input("port nomresini daxil edin: "))
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.settimeout(5)
+try:
+    result = sock.connect((host_ip,port))
+    print("Port aciqdir")
+except socket.gaierror:
+    print("Baglanti ugursuz oldu")
+    
+sock.close()
+
+
+#https sayt yoxlama
+
+import requests
+url = input("Enter the url: ")
+response = requests.get(url)
+print(f"Sayt aciqdir {response.status_code}")
+if response.status_code == 200:
+    print("Sayt aciqdir")
+else:
+    print("Sayt baglidir")
+
+#basliqlar
+import requests
+url = input("Enter the url: ")
+response = requests.get(url)
+print("Basliqlar: ")
+
+for key, value in response.headers.items():
+    print(f"{key}: {value}")
+
