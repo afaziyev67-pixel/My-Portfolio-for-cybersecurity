@@ -1,0 +1,111 @@
+Linux Komutlari ve Ornekleri
+ DOSYA VE DIZIN KOMUTLARI
+ ls:
+ ls
+ ls -l
+ ls -a
+ cd:
+ cd /home/amil
+ cd ..
+ cd ~/Downloads
+ pwd:
+ pwd
+ mkdir:
+ mkdir test_klasoru
+ mkdir -p a/b/c
+ rmdir:
+ rmdir test_klasoru
+ rm:
+ rm dosya.txt
+ rm -r klasor_ismi
+ rm -rf *
+ cp:
+ cp dosya1.txt yedek.txt
+ cp -r /etc/nginx/ ./nginx_backup/
+ mv:
+ mv eski.txt yeni.txt
+ mv dosya.txt /home/amil/
+ touch:
+ touch yeni.txt
+find:
+ find / -name "config.txt"
+ find . -type f -size +10M
+ DOSYA GORUNTULEME
+ cat / less / more:
+ cat dosya.txt
+ less dosya.txt
+ more uzun_dosya.txt
+ head / tail:
+ head dosya.txt
+ tail -n 20 dosya.txt
+ nano / vim:
+ nano not.txt
+ vim not.txt
+ echo:
+ echo "Merhaba Amil!" > mesaj.txt
+ tee:
+ echo "log kayd" | tee log.txt
+ SISTEM BILGILERI
+ uname / uptime / whoami:
+ uname -a
+ uptime
+ whoami
+ top / htop:
+ top
+ htop
+ df / du:
+ df -h
+ du -sh *
+ free:
+free -h
+ KULLANICI & IZINLER
+ adduser / passwd / userdel:
+ sudo adduser yeni_kullanici
+ sudo passwd yeni_kullanici
+ sudo deluser eski_kullanici
+ chown / chmod:
+ sudo chown amil:amil dosya.txt
+ chmod 755 script.sh
+ groups / id:
+ groups
+ id kullanici_adi
+ AG KOMUTLARI
+ ping / ifconfig / ip:
+ ping 8.8.8.8
+ ifconfig
+ ip a
+ netstat / ss:
+ netstat -tulnp
+ ss -tuln
+ curl / wget:
+ curl https://example.com
+ wget https://example.com/dosya.zip
+ YETKILI KOMUTLAR
+ sudo / su / visudo:
+ sudo apt update
+ su 
+sudo visudo
+ PAKET YONETIMI
+ APT:
+ sudo apt update
+ sudo apt install nmap
+ sudo apt remove nano
+ YUM / DNF:
+ sudo yum install htop
+ sudo dnf remove nginx
+ Pacman:
+ sudo pacman -S firefox
+ EKSTRA KOMUTLAR
+ history / alias / grep:
+ history
+ alias ll='ls -l --color=auto'
+ grep "root" /etc/passwd
+ cut / awk / sed:
+ cut -d: -f1 /etc/passwd
+ awk -F: '{print $1}' /etc/passwd
+ sed 's/old/new/g' dosya.txt
+ tar / zip / unzip:
+ tar -czf arxiv.tar.gz klasor/
+ tar -xzf arxiv.tar.gz
+ zip dosya.zip dosya1.txt
+ unzip dosya.zip
