@@ -1,0 +1,103 @@
+ps – prosesləri göstərir
+ps = process status
+Bu nə edir?
+
+a – bütün istifadəçilərin proseslərini göstərir
+
+u – proses sahibini (user) da göstərir
+
+x – terminala bağlı olmayan prosesləri də göstərir
+
+
+grep – müəyyən bir sözü/proses adını axtarır
+
+
+head -n əmri Linux/Unix sistemlərində bir faylın və ya komandanın nəticəsinin ilk n sətrini göstərmək üçün istifadə olunur.
+
+pgrep
+
+u əmr, Linux/Unix sistemlərində prosesləri axtarmaq üçün ps aux | grep kombinasiyasına sürətli və daha təmiz alternativ sayılır.
+
+ pgrep nədir?
+pgrep = process grep
+
+Bir prosesin adını və ya hissəsini yazaraq onun PID-sini (Process ID) tapmağa imkan verir.
+
+ Əsas Sintaksis:
+
+pgrep [seçimlər] [axtarılan_proses_adı]
+ Sadə istifadə:
+
+pgrep firefox
+Firefox prosesi varsa, onun PID-ni qaytarır.
+
+ Faydalı seçimlər (flags):
+Flag	Açıklama
+-l	PID ilə yanaşı proses adını da göstərir
+-a	PID ilə tam komanda sətirini göstərir (çox faydalıdır)
+-f	Prosesin tam komanda sətirini (command-line) axtarır, sadəcə ad deyil
+-u user	Sadəcə müəyyən istifadəçinin proseslərini axtarır
+-n	Ən son başlayan uyğun prosesi göstərir
+-o	Ən əvvəl başlayan uyğun prosesi göstərir
+
+ Misallar
+🔹 1. Sadə PID tap:
+
+pgrep ssh
+🔹 2. Proses adı ilə birlikdə:
+
+pgrep -l ssh
+Nəticə:
+1234 sshd
+5678 ssh-agent
+🔹 3. Tam komanda sətri ilə axtar (məsələn Python skript):
+
+pgrep -af myscript.py
+Nəticə:
+
+2345 python3 myscript.py
+🔹 4. Müəyyən istifadəçiyə aid prosesləri tap:
+
+pgrep -u amil
+🔹 5. Ən son başlayan nginx prosesi:
+
+pgrep -n nginx
+🔹 6. Ən əvvəl başlamış nginx prosesi:
+
+pgrep -o nginx
+ pgrep + kill birlikdə:
+Məsələn, firefox prosesini öldürmək üçün:
+
+kill $(pgrep firefox)
+Yəni pgrep ilə PID tapılır, kill ilə dayandırılır.
+
+ kill nədir?
+kill əmri, bir və ya daha çox prosesə siqnal göndərmək üçündür. Ən çox prosesləri dayandırmaq (öldürmək) məqsədilə istifadə olunur.
+
+ Əsas sintaksis:
+kill [siqnal] PID
+PID – prosesin ID nömrəsi (ps, pgrep ilə tapılır)
+
+ Ən çox istifadə olunan siqnallar:
+Siqnal	Nömrə	Təsiri
+-15 (TERM)	15	Prosesə "normal" şəkildə dayan deyir
+-9 (KILL)	9	Proses dərhal öldürülür (məcburi)
+-1 (HUP)	1	Proses yenidən başladılır (reload)
+-2 (INT)	2	Ctrl+C siqnalı kimi işləyir
+
+
+sleep əmri verilmiş zaman müddəti qədər prosesi və ya komanda xəttini gözlətmək, yəni dayandırmaq üçün istifadə olunur.
+
+ Sintaksis:
+sleep [VAQT]
+VAQT saniyə ilə ifadə olunur (tam ədəd və ya onluq ola bilər)
+
+VAQT-ı ayrıca vahidlərlə də verə bilərsən (s, m, h, d)
+
+ Vaxt vahidləri:
+Qısa Forma	Mənası	İzah
+s	saniyə (default)	5 = 5 saniyə
+m	dəqiqə	3m = 3 dəqiqə
+h	saat	2h = 2 saat
+d	gün	1d = 1 gün
+
