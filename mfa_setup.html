@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>MFA Setup</h2>
+<p>Scan the QR code below with your Google Authenticator app:</p>
+<div id="qrcode"></div>
+<p>Secret Key: <strong>{{ secret }}</strong></p>
+<a href="/login"><button>Proceed to Login</button></a>
+
+<script>
+    var otpauth_url = "{{ otpauth_url }}";
+    new QRCode(document.getElementById("qrcode"), otpauth_url);
+</script>
+{% endblock %}
